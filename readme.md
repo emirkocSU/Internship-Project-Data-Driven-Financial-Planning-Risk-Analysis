@@ -422,19 +422,19 @@ All system parameters are configurable through `config/settings.yaml`:
 The system automatically generates comprehensive charts and visualizations for all analyses. Below are the key visual outputs:
 
 ### Sales Forecast Analysis
-![Sales Forecast](outputs/charts/sales_forecast.png)
+![Sales Forecast](ElipsFinancialPlanner/outputs/charts/sales_forecast.png)
 *18-month sales projection with trend analysis and 95% confidence intervals showing historical context and future projections*
 
 ### Scenario Comparison Analysis
-![Scenario Comparison](outputs/charts/scenario_comparison.png)
+![Scenario Comparison](ElipsFinancialPlanner/outputs/charts/scenario_comparison.png)
 *Comparative analysis of nine business scenarios showing free cash flow trajectories under different market conditions*
 
 ### Monte Carlo Risk Distribution
-![Risk Distribution](outputs/charts/risk_distribution.png)
+![Risk Distribution](ElipsFinancialPlanner/outputs/charts/risk_distribution.png)
 *Probability distribution of financial outcomes based on 1,000+ Monte Carlo simulations with VaR and CVaR indicators*
 
 ### Comprehensive Financial Dashboard
-![Financial Dashboard](outputs/charts/financial_dashboard.png)
+![Financial Dashboard](ElipsFinancialPlanner/outputs/charts/financial_dashboard.png)
 *Executive dashboard displaying revenue trends, profitability margins, cash flow patterns, and working capital dynamics*
 
 ### Chart Generation Commands
