@@ -497,7 +497,6 @@ python -m src.cli scenario --data-file "data/sales_history.cleaned.csv" \
    git commit -m "Add generated visualization charts"
    git push origin main
    ```
-ElipsFinancialPlanner/outputs/charts/risk_distribution.png
 3. **Chart Files Included:**
    - `ElipsFinancialPlanner/outputs/charts/sales_forecast.png` - 18-month sales projection
    - `ElipsFinancialPlanner/outputs/charts/scenario_comparison.png` - 9-scenario analysis
