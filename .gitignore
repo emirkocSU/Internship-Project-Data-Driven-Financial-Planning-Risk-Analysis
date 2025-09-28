@@ -1,0 +1,22 @@
+# Python / genel
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv
+venv/
+env/
+build/
+dist/
+*.egg-info/
+.ipynb_checkpoints/
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Sistem/Geçici
+Thumbs.db
+*.log

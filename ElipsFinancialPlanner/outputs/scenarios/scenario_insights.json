@@ -1,0 +1,11 @@
+{
+  "best_case_scenario": "optimistic",
+  "worst_case_scenario": "stress",
+  "fcf_range": 2568870.05,
+  "risk_percentage": 93.12329636285578,
+  "scenarios_with_negative_fcf": [
+    "recession",
+    "stress"
+  ],
+  "risk_level": "High"
+}

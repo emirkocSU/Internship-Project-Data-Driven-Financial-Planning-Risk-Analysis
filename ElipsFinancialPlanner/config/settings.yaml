@@ -1,0 +1,177 @@
+# Elips Financial Planner Configuration
+# All system parameters and assumptions
+
+# General settings
+random_seed: 42
+project_name: "Elips Medikal Financial Planning System"
+version: "0.1.0"
+
+# Forecasting configuration
+forecast:
+  horizon: 18              # Extended to 18 months for comprehensive planning
+  confidence_level: 0.95
+  model: auto              # auto-selects between sarima, ets, prophet
+  include_components: true # Include trend, seasonal, residual analysis
+  backtest:
+    rolling_origin: true
+    window: 36
+    step: 1
+    metrics: [mape, rmse, smape, mae]
+    seasonality_hint: 12
+  validation:
+    test_periods: 6
+    min_accuracy_threshold: 0.85  # Minimum R² for model acceptance
+    max_mape_threshold: 15.0      # Maximum MAPE% for model acceptance
+
+# Per-model configurations
+models:
+  sarima:
+    order: [1, 1, 1]
+    seasonal_order: [1, 1, 1, 12]
+    enforce_stationarity: true
+    enforce_invertibility: true
+  ets:
+    trend: add
+    seasonal: mul
+    seasonal_periods: 12
+  prophet:
+    yearly_seasonality: auto
+    weekly_seasonality: false
+    daily_seasonality: false
+    changepoint_prior_scale: 0.05
+
+# Financial parameters (Turkish market specific)
+finance:
+  tax_rate: 0.22            # Corporate tax rate
+  cogs_share: 0.65          # CoGS as % of sales
+  beta_fx: 0.15             # FX sensitivity coefficient for costs
+  dso: 45                   # Days Sales Outstanding
+  dpo: 30                   # Days Payable Outstanding
+  dio: 60                   # Days Inventory Outstanding
+  depreciation: 50000       # Monthly TRY
+  capex: 100000             # Monthly TRY
+  discount_rate: 0.20       # Annual discount rate for DCF-like calcs
+  wc_sensitivity:
+    sales_change_to_wc: 0.12
+
+# Scenario definitions (sales_change applied as level multiplier on forecast path)
+scenarios:
+  base:      
+    sales_change: 0.00
+    fx_change: 0.00
+    opex_change: 0.00
+    description: "Baseline scenario - Current trajectory with no changes"
+  
+  optimistic:
+    sales_change: 0.25
+    fx_change: -0.10
+    opex_change: -0.06
+    description: "Optimistic growth - Market expansion with operational efficiency"
+  
+  best:      
+    sales_change: 0.15
+    fx_change: -0.05
+    opex_change: -0.04
+    description: "Best case - Strong growth with favorable FX and cost management"
+  
+  moderate_growth:
+    sales_change: 0.08
+    fx_change: 0.02
+    opex_change: -0.02
+    description: "Moderate growth - Steady expansion with minor FX pressure"
+  
+  fx_shock:  
+    sales_change: -0.05
+    fx_change: 0.20
+    opex_change: 0.00
+    description: "FX crisis - Currency devaluation impact on import costs"
+  
+  cost_cut:  
+    sales_change: -0.02
+    fx_change: 0.00
+    opex_change: -0.08
+    description: "Cost optimization - Efficiency improvements and OpEx reduction"
+  
+  recession:
+    sales_change: -0.12
+    fx_change: 0.15
+    opex_change: 0.02
+    description: "Economic recession - Reduced demand with increased costs"
+  
+  stress:    
+    sales_change: -0.20
+    fx_change: 0.25
+    opex_change: 0.03
+    description: "Severe stress test - Major market contraction and currency crisis"
+  
+  recovery:
+    sales_change: 0.18
+    fx_change: -0.08
+    opex_change: -0.03
+    description: "Post-crisis recovery - Strong rebound with stabilizing conditions"
+
+# Risk analysis parameters (Monte Carlo)
+risk:
+  mc_runs: 1000  # Balanced for speed and accuracy
+  sales_vol: 0.12
+  fx_vol: 0.15
+  correlation:
+    sales_fx: -0.2
+  tails:
+    method: winsorize
+    lower_pct: 0.5
+    upper_pct: 99.5
+  var_confidence: 0.95    # VaR confidence level
+  time_horizon: 12        # Risk assessment horizon (months)
+
+# Data configuration
+data:
+  input_file: "data/sales_history.cleaned.csv"
+  output_dir: "outputs"
+  date_format: "%Y-%m-%d"
+  columns:
+    date: date
+    sales: sales_total_try
+    opex: opex_try
+    fx: usdtry
+    units: units_sold
+    avg_price: avg_price_try
+    cogs: cogs_try
+    promo: promo_intensity
+    competitor: competitor_index
+  # Validation thresholds
+  max_fx_rate: 60.0
+  min_sales: 0
+  max_opex_ratio: 0.5
+  min_opex_ratio: 0.15
+  allow_future_dates: false
+  min_date: "2018-01-01"
+
+# Validation behavior
+validation:
+  strict: true            # true = raise; false = auto-fix & warn
+  auto_fix:
+    clip_fx_to_max: true
+    reindex_monthly: true
+    fill_strategy: "seasonal_interpolation"
+
+# Logging configuration
+logging:
+  level: "INFO"            # DEBUG, INFO, WARNING, ERROR
+  file: "outputs/elips_planner.log"
+  file_path: "outputs/elips_planner.log"  # backward-compat
+  max_file_size: 10485760  # 10MB
+  backup_count: 5
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Output configuration
+output:
+  csv_precision: 2         # Decimal places for CSV output
+  folders:
+    forecast: outputs/forecast
+    scenarios: outputs/scenarios
+    plan: outputs/plan
+    risk: outputs/risk
+  chart_style: "seaborn-v0_8"
+  chart_dpi: 300
+  save_charts: true

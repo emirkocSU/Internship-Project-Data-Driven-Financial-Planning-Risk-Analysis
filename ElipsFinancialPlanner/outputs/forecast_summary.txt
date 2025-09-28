@@ -1,0 +1,37 @@
+
+ELIPS MEDIKAL - COMPREHENSIVE SALES FORECAST ANALYSIS
+====================================================
+
+FORECAST PERIOD: 18 months (2025-11 to 2027-04)
+MODEL USED: ETS
+CONFIDENCE LEVEL: 95%
+
+FORECAST METRICS:
+-----------------
+Starting Value:     4,309,410 TRY
+Ending Value:       4,505,325 TRY
+Total Growth:       +4.5%
+Average Monthly:    4,403,840 TRY
+Total 18-Month:   79,269,128 TRY
+
+VOLATILITY ANALYSIS:
+--------------------
+Standard Deviation: 53,531 TRY
+Coefficient of Var: 1.2%
+Min Forecast:       4,309,410 TRY
+Max Forecast:       4,505,325 TRY
+
+MODEL PERFORMANCE:
+------------------
+MAPE:              0.42%
+R-Squared:         0.998
+RMSE:              34,806
+
+BUSINESS INSIGHTS:
+------------------
+Growth Trajectory:  Stable
+Seasonality:       Minimal
+Risk Assessment:   Low Volatility
+
+====================================================
+Generated: 2025-09-28 17:49:12
