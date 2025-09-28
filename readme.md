@@ -1,4 +1,4 @@
-D# Elips Medikal Financial Planning System
+
 ## Data-Driven Financial Planning & Risk Analysis for Turkish Healthcare Technology Sector
 
  
