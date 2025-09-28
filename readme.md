@@ -204,16 +204,16 @@ Free_Cash_Flow = NOPAT + Depreciation - CapEx - WC_Change
 
 ### Generated Charts and Reports
 
-**[INSERT CHART 1: Sales Forecast with Confidence Intervals]**
+**[ Sales Forecast with Confidence Intervals]**
 *18-month sales projection with 95% confidence bounds and historical context*
 
-**[INSERT CHART 2: Scenario Comparison Analysis]**
+**[ Scenario Comparison Analysis]**
 *Free cash flow projections across all nine business scenarios*
 
-**[INSERT CHART 3: Risk Distribution Analysis]**
+**[ Risk Distribution Analysis]**
 *Monte Carlo simulation results showing FCF probability distributions*
 
-**[INSERT CHART 4: Financial Dashboard]**
+**[ Financial Dashboard]**
 *Comprehensive financial metrics dashboard with P&L, cash flow, and working capital*
 
 ### Executive Summary Output
